@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="Globals">
     <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -12,5 +12,30 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)command_manager.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)create_view.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)descriptor_heap.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)device.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)pipeline_state.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)resource.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)root_signature.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)shader.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)swap_chain.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)utility.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)window.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)create_view.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)descriptor_heap.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)device.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)pipeline_state.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)resource.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)root_signature.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)shader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)swap_chain.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)utility.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)window.cpp" />
   </ItemGroup>
 </Project>
