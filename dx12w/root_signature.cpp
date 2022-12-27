@@ -2,7 +2,7 @@
 
 #pragma comment(lib,"d3d12.lib")
 
-namespace pdx12
+namespace dx12w
 {
 	release_unique_ptr<ID3D12RootSignature> create_root_signature(ID3D12Device* device,
 		std::vector<std::vector<descriptor_range_type>> const& descriptorRangeTypes, std::vector<static_sampler> const& staticSamplers)

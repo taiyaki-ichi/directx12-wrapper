@@ -3,7 +3,7 @@
 #pragma comment(lib,"d3d12.lib")
 #pragma comment(lib,"dxgi.lib")
 
-namespace pdx12
+namespace dx12w
 {
 	release_unique_ptr<IDXGISwapChain3> create_swap_chain(ID3D12CommandQueue* commandQueue, HWND hwnd, DXGI_FORMAT frameBufferFormat, UINT frameBufferNum)
 	{

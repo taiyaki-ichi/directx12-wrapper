@@ -3,7 +3,7 @@
 #include<dxgi1_4.h>
 #include"utility.hpp"
 
-namespace pdx12
+namespace dx12w
 {
 	// 新しい型を定義するほどでもないと思ったのでエイリアスですます
 	// 少しみにくいかも

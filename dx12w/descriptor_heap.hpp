@@ -4,7 +4,7 @@
 
 #pragma comment(lib,"d3d12.lib")
 
-namespace pdx12
+namespace dx12w
 {
 
 	class descriptor_heap

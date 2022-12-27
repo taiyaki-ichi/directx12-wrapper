@@ -4,7 +4,7 @@
 
 #pragma comment(lib,"d3d12.lib")
 
-namespace pdx12
+namespace dx12w
 {
 
 	void create_CBV(ID3D12Device* device, D3D12_CPU_DESCRIPTOR_HANDLE cpuHandle, ID3D12Resource* resource, UINT sizeInBytes)

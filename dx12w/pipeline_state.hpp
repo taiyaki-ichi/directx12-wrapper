@@ -5,7 +5,7 @@
 #include<vector>
 
 
-namespace pdx12
+namespace dx12w
 {
 	// グラフィックパイプラインの初期化用
 	struct input_element

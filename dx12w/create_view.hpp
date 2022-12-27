@@ -2,7 +2,7 @@
 #include<d3d12.h>
 #include<dxgi1_4.h>
 
-namespace pdx12
+namespace dx12w
 {
 	//
 	// d3d12.h‚Ìƒrƒ…[‚ğì¬‚·‚éŠÖ”‚Å‚Í_VIEW_DESC‚Ì\‘¢‘Ì‚ğİ’è‚µ‚È‚¯‚ê‚Î‚¢‚¯‚È‚¢

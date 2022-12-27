@@ -5,9 +5,9 @@
 #include<iterator>
 #include"utility.hpp"
 
-namespace pdx12
+namespace dx12w
 {
 	
-	pdx12::release_unique_ptr<ID3D12Device> create_device();
+	dx12w::release_unique_ptr<ID3D12Device> create_device();
 
 }

@@ -7,7 +7,7 @@
 #include<Windows.h>
 
 
-namespace pdx12
+namespace dx12w
 {
 	// ファイル名、関数名、インクルードオプション
 	// 関数内でシェーダファイルをコンパイルしているので軽くはないと思う

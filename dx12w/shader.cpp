@@ -4,7 +4,7 @@
 #pragma comment(lib,"dxgi.lib")
 #pragma comment(lib,"d3dcompiler.lib")
 
-namespace pdx12
+namespace dx12w
 {
 	release_unique_ptr<ID3DBlob> create_shader(const wchar_t* fileName, const char* funcName, const char* includeOption)
 	{

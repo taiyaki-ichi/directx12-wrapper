@@ -5,7 +5,7 @@
 #include<array>
 
 
-namespace pdx12
+namespace dx12w
 {
 	// ルートシグネチャの初期化用ぐらいしか使わない
 	// D3D12_STATIC_SAMPLER_DESCとあんま変らないからなくしてもイイかも

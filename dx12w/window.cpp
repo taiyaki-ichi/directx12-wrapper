@@ -1,6 +1,6 @@
 #include"window.hpp"
 
-namespace pdx12
+namespace dx12w
 {
 	// メッセージを処理するためのコールバック関数を設定するために
 	// その関数のポインタが必要になるので定義している

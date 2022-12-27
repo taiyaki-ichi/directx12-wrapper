@@ -3,7 +3,7 @@
 #pragma comment(lib,"d3d12.lib")
 #pragma comment(lib,"dxgi.lib")
 
-namespace pdx12
+namespace dx12w
 {
 	release_unique_ptr<ID3D12PipelineState> create_graphics_pipeline(ID3D12Device* device,
 		ID3D12RootSignature* rootSignature, std::vector<input_element> const& inputElements, std::vector<DXGI_FORMAT> const& renderTargetFormats,

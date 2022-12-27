@@ -2,9 +2,9 @@
 
 #pragma comment(lib,"d3d12.lib")
 
-namespace pdx12
+namespace dx12w
 {
-	void pdx12::descriptor_heap::initialize(ID3D12Device* device, D3D12_DESCRIPTOR_HEAP_TYPE type, UINT size)
+	void dx12w::descriptor_heap::initialize(ID3D12Device* device, D3D12_DESCRIPTOR_HEAP_TYPE type, UINT size)
 	{
 		D3D12_DESCRIPTOR_HEAP_DESC desc{};
 		// レンダーターゲット用とかデプス用はシェーダから見えるフラグを立てるとエラー出る
@@ -26,7 +26,7 @@ namespace pdx12
 		this->size = size;
 	}
 
-	D3D12_GPU_DESCRIPTOR_HANDLE pdx12::descriptor_heap::get_GPU_handle(std::size_t index)
+	D3D12_GPU_DESCRIPTOR_HANDLE dx12w::descriptor_heap::get_GPU_handle(std::size_t index)
 	{
 		// 基底となるハンドルからindex分インクリメントしている
 		auto gpuHandle = ptr->GetGPUDescriptorHandleForHeapStart();
@@ -34,7 +34,7 @@ namespace pdx12
 		return gpuHandle;
 	}
 
-	D3D12_CPU_DESCRIPTOR_HANDLE pdx12::descriptor_heap::get_CPU_handle(std::size_t index)
+	D3D12_CPU_DESCRIPTOR_HANDLE dx12w::descriptor_heap::get_CPU_handle(std::size_t index)
 	{
 		// 基底となるハンドルからindex分インクリメントしている
 		auto cpuHandle = ptr->GetCPUDescriptorHandleForHeapStart();
@@ -42,7 +42,7 @@ namespace pdx12
 		return cpuHandle;
 	}
 
-	ID3D12DescriptorHeap* pdx12::descriptor_heap::get()
+	ID3D12DescriptorHeap* dx12w::descriptor_heap::get()
 	{
 		return ptr.get();
 	}

@@ -3,7 +3,7 @@
 #pragma comment(lib,"d3d12.lib")
 #pragma comment(lib,"dxgi.lib")
 
-namespace pdx12
+namespace dx12w
 {
 	resource_and_state create_commited_upload_buffer_resource(ID3D12Device* device, UINT64 size)
 	{

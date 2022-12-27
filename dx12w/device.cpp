@@ -4,10 +4,10 @@
 #pragma comment(lib,"d3d12.lib")
 #pragma comment(lib,"dxgi.lib")
 
-namespace pdx12
+namespace dx12w
 {
 
-	pdx12::release_unique_ptr<ID3D12Device> create_device()
+	dx12w::release_unique_ptr<ID3D12Device> create_device()
 	{
 
 #ifdef _DEBUG
@@ -23,7 +23,7 @@ namespace pdx12
 		}
 #endif
 
-		pdx12::release_unique_ptr<IDXGIFactory4> factory{};
+		dx12w::release_unique_ptr<IDXGIFactory4> factory{};
 
 		// ファクトリーの作成
 		{
@@ -36,7 +36,7 @@ namespace pdx12
 		}
 
 
-		pdx12::release_unique_ptr<IDXGIAdapter3> adaptor{};
+		dx12w::release_unique_ptr<IDXGIAdapter3> adaptor{};
 
 		// アダプターの作成
 		{
@@ -66,7 +66,7 @@ namespace pdx12
 		}
 
 
-		pdx12::release_unique_ptr<ID3D12Device> device{};
+		dx12w::release_unique_ptr<ID3D12Device> device{};
 
 		// デバイスの作成
 		{

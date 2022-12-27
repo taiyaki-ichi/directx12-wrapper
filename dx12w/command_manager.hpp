@@ -7,7 +7,7 @@
 #pragma comment(lib,"d3d12.lib")
 #pragma comment(lib,"dxgi.lib")
 
-namespace pdx12
+namespace dx12w
 {
 
 	// コマンドアロケータの数はコンパイル時に決まってる気がする
@@ -120,7 +120,7 @@ namespace pdx12
 
 
 	template<std::size_t AllocatorNum>
-	inline void pdx12::command_manager<AllocatorNum>::signal()
+	inline void dx12w::command_manager<AllocatorNum>::signal()
 	{
 		// インクリメントして以前に使用した値を変更する
 		fence_values[current_allocaotr_index]++;
@@ -129,7 +129,7 @@ namespace pdx12
 	}
 
 	template<std::size_t AllocatorNum>
-	inline void pdx12::command_manager<AllocatorNum>::wait(std::size_t index)
+	inline void dx12w::command_manager<AllocatorNum>::wait(std::size_t index)
 	{
 		if (fences[index]->GetCompletedValue() < fence_values[index])
 		{
@@ -143,7 +143,7 @@ namespace pdx12
 	}
 
 	template<std::size_t AllocatorNum>
-	inline void pdx12::command_manager<AllocatorNum>::reset_list(std::size_t index)
+	inline void dx12w::command_manager<AllocatorNum>::reset_list(std::size_t index)
 	{
 		allocators[index]->Reset();
 		list->Reset(allocators[index].get(), nullptr);
@@ -151,25 +151,25 @@ namespace pdx12
 	}
 
 	template<std::size_t AllocatorNum>
-	inline void pdx12::command_manager<AllocatorNum>::excute()
+	inline void dx12w::command_manager<AllocatorNum>::excute()
 	{
 		queue->ExecuteCommandLists(1, (ID3D12CommandList**)(&list));
 	}
 
 	template<std::size_t AllocatorNum>
-	inline void pdx12::command_manager<AllocatorNum>::dispatch(std::uint32_t threadGroupCountX, std::uint32_t threadGroupCountY, std::uint32_t threadGroupCountZ)
+	inline void dx12w::command_manager<AllocatorNum>::dispatch(std::uint32_t threadGroupCountX, std::uint32_t threadGroupCountY, std::uint32_t threadGroupCountZ)
 	{
 		list->Dispatch(threadGroupCountX, threadGroupCountY, threadGroupCountZ);
 	}
 
 	template<std::size_t AllocatorNum>
-	inline ID3D12GraphicsCommandList* pdx12::command_manager<AllocatorNum>::get_list()
+	inline ID3D12GraphicsCommandList* dx12w::command_manager<AllocatorNum>::get_list()
 	{
 		return list.get();
 	}
 
 	template<std::size_t AllocatorNum>
-	inline ID3D12CommandQueue* pdx12::command_manager<AllocatorNum>::get_queue()
+	inline ID3D12CommandQueue* dx12w::command_manager<AllocatorNum>::get_queue()
 	{
 		return queue.get();
 	}

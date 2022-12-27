@@ -11,7 +11,7 @@
 
 #include<iostream>
 
-namespace pdx12
+namespace dx12w
 {
 	using namespace DirectX;
 
