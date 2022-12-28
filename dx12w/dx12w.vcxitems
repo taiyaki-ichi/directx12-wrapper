@@ -26,7 +26,4 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)utility.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)window.hpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)window.cpp" />
-  </ItemGroup>
 </Project>
