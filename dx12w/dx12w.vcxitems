@@ -27,7 +27,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)window.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)swap_chain.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)utility.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)window.cpp" />
   </ItemGroup>
