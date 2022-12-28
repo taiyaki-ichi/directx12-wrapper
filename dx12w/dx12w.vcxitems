@@ -27,7 +27,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)window.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)create_view.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)descriptor_heap.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)device.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)pipeline_state.cpp" />
