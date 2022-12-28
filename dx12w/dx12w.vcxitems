@@ -27,7 +27,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)window.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)pipeline_state.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)resource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)root_signature.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)shader.cpp" />
