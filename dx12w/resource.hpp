@@ -19,27 +19,27 @@ namespace dx12w
 
 	// CPUからの書き込みが可能なバッファ
 	// 頂点バッファや定数バッファを作成する際に使用
-	resource_and_state create_commited_upload_buffer_resource(ID3D12Device* device, UINT64 size);
+	inline resource_and_state create_commited_upload_buffer_resource(ID3D12Device* device, UINT64 size);
 
 	// GPUからのみ読み書きが可能
 	// テクスチャとして扱うことで最適化をはかれる, みたいな感じだと思う
-	resource_and_state create_commited_texture_resource(ID3D12Device* device,
+	inline resource_and_state create_commited_texture_resource(ID3D12Device* device,
 		DXGI_FORMAT format, UINT64 width, UINT height, std::size_t dimension, UINT16 depthOrArraySize, UINT16 mipLevels, D3D12_RESOURCE_FLAGS flags, D3D12_CLEAR_VALUE const* clearValue = nullptr);
 
 	// この関数使いどころないかも
 	// create_commited_texture_resourceで作成したリソースの方がアクセス速いと思う, たぶん
-	resource_and_state create_commited_buffer_resource(ID3D12Device* device, UINT64 size, D3D12_RESOURCE_FLAGS flags);
+	inline resource_and_state create_commited_buffer_resource(ID3D12Device* device, UINT64 size, D3D12_RESOURCE_FLAGS flags);
 
 
 	// リソースバリアを作成しresource.secondを更新
-	void resource_barrior(ID3D12GraphicsCommandList* list, resource_and_state& resource, D3D12_RESOURCE_STATES afterState);
+	inline void resource_barrior(ID3D12GraphicsCommandList* list, resource_and_state& resource, D3D12_RESOURCE_STATES afterState);
 
 
 	//
 	// 以下、実装
 	//
 
-	resource_and_state create_commited_upload_buffer_resource(ID3D12Device* device, UINT64 size)
+	inline resource_and_state create_commited_upload_buffer_resource(ID3D12Device* device, UINT64 size)
 	{
 		D3D12_HEAP_PROPERTIES heapProperties{};
 		heapProperties.Type = D3D12_HEAP_TYPE_UPLOAD;
@@ -76,7 +76,7 @@ namespace dx12w
 	}
 
 
-	resource_and_state create_commited_texture_resource(ID3D12Device* device,
+	inline resource_and_state create_commited_texture_resource(ID3D12Device* device,
 		DXGI_FORMAT format, UINT64 width, UINT height, std::size_t dimension, UINT16 depthOrArraySize, UINT16 mipLevels, D3D12_RESOURCE_FLAGS flags, D3D12_CLEAR_VALUE const* clearValue)
 	{
 		D3D12_HEAP_PROPERTIES heapProperties{};
@@ -126,7 +126,7 @@ namespace dx12w
 		return { release_unique_ptr<ID3D12Resource>{tmp},initialState };
 	}
 
-	resource_and_state create_commited_buffer_resource(ID3D12Device* device, UINT64 size, D3D12_RESOURCE_FLAGS flags)
+	inline resource_and_state create_commited_buffer_resource(ID3D12Device* device, UINT64 size, D3D12_RESOURCE_FLAGS flags)
 	{
 		D3D12_HEAP_PROPERTIES heapProperties{};
 		heapProperties.Type = D3D12_HEAP_TYPE_DEFAULT;
@@ -164,7 +164,7 @@ namespace dx12w
 
 	// リソースバリアを作成しresource.secondを更新
 	// TODO: 現在のD3D12_RESOURCE_STATESとafterStateが同じな場合エラー出た気がする
-	void resource_barrior(ID3D12GraphicsCommandList* list, resource_and_state& resource, D3D12_RESOURCE_STATES afterState)
+	inline void resource_barrior(ID3D12GraphicsCommandList* list, resource_and_state& resource, D3D12_RESOURCE_STATES afterState)
 	{
 		D3D12_RESOURCE_BARRIER barrier{};
 		barrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
