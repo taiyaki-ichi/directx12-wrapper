@@ -11,7 +11,7 @@
 namespace dx12w
 {
 	
-	release_unique_ptr<ID3D12Device> create_device()
+	inline release_unique_ptr<ID3D12Device> create_device()
 	{
 
 #ifdef _DEBUG
