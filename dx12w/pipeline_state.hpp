@@ -29,8 +29,22 @@ namespace dx12w
 		ID3DBlob* domain_shader = nullptr;
 	};
 
+	// グラフィクスパイプラインの作成
 	// もうちょいいろいろ設定できるように変更したい
 	// ワイヤーフレームで描写できたり, ステンシルテストできたりとか
+	inline release_unique_ptr<ID3D12PipelineState> create_graphics_pipeline(ID3D12Device* device,
+		ID3D12RootSignature* rootSignature, std::vector<input_element> const& inputElements, std::vector<DXGI_FORMAT> const& renderTargetFormats,
+		shader_desc const& shaderDescs, bool depthEnable, bool alphaBlend, D3D12_PRIMITIVE_TOPOLOGY_TYPE primitiveTopologyType)
+
+	// コンピュートシェーダを使う際のパイポラインの作成
+	inline release_unique_ptr<ID3D12PipelineState> create_compute_pipeline(ID3D12Device* device,
+		ID3D12RootSignature* rootSignature, ID3DBlob* computeShader);
+
+
+	//
+	// 以下、実装
+	//
+
 	inline release_unique_ptr<ID3D12PipelineState> create_graphics_pipeline(ID3D12Device* device,
 		ID3D12RootSignature* rootSignature, std::vector<input_element> const& inputElements, std::vector<DXGI_FORMAT> const& renderTargetFormats,
 		shader_desc const& shaderDescs, bool depthEnable, bool alphaBlend, D3D12_PRIMITIVE_TOPOLOGY_TYPE primitiveTopologyType)
