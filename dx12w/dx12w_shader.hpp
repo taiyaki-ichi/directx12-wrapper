@@ -43,4 +43,27 @@ namespace dx12w
 
 		return release_unique_ptr<ID3DBlob>{tmp};
 	}
+
+	// バイナリの読み込み
+	inline release_unique_ptr<ID3DBlob> load_blob(std::istream& in)
+	{
+		release_unique_ptr<ID3DBlob> result{};
+
+		// 大きさの取得
+		auto const size = in.tellg();
+
+		// blobのメモリ確保
+		{
+			ID3D10Blob* tmp = nullptr;
+			D3DCreateBlob(size, &tmp);
+
+			result.reset(tmp);
+		}
+
+		// データの読み込み
+		in.seekg(0);
+		in.read(reinterpret_cast<char*>(result.get()), size);
+
+		return result;
+	}
 }
