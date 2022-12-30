@@ -14,7 +14,7 @@ namespace dx12w
 {
 	// ファイル名、関数名、インクルードオプション
 	// 関数内でシェーダファイルをコンパイルしているので軽くはないと思う
-	inline release_unique_ptr<ID3DBlob> create_shader(const wchar_t* fileName, const char* funcName, const char* includeOption)
+	inline release_unique_ptr<ID3DBlob> compile_shader(const wchar_t* fileName, const char* funcName, const char* includeOption)
 	{
 
 		ID3DBlob* tmp = nullptr;
