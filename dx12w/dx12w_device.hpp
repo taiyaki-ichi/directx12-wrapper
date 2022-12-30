@@ -3,7 +3,7 @@
 #include<dxgi1_4.h>
 #include<stdexcept>
 #include<iterator>
-#include"utility.hpp"
+#include"dx12w_utility.hpp"
 
 #pragma comment(lib,"d3d12.lib")
 #pragma comment(lib,"dxgi.lib")
