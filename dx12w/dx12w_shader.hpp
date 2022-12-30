@@ -1,5 +1,5 @@
 #pragma once
-#include"utility.hpp"
+#include"dx12w_utility.hpp"
 #include<d3d12.h>
 #include<dxgi1_4.h>
 #include<d3dcompiler.h>
