@@ -1,6 +1,6 @@
 #pragma once
 #include<d3d12.h>
-#include"utility.hpp"
+#include"dx12w_utility.hpp"
 #include<vector>
 #include<array>
 
