@@ -16,17 +16,23 @@ namespace dx12w
 		DXGI_FORMAT format;
 	};
 
+	struct shader
+	{
+		void* data = nullptr;
+		std::size_t size = 0;
+	};
+
 	// グラフィックパイプラインの初期化用
 	// 深度をとるだけとかのrenderTargerFormatsが空の場合はshader_desc.pixel_shaderはnullpterで良かった気がする
 	// テッセレーションしたい場合shader_desc.hull_shaderとshader_desc.domain_shaderのどちらも設定する必要あり
 	// 基本はshader_desc.vertex_shaderとshader_desc.pixel_shaderに値が設定されてればおけ
 	struct shader_desc
 	{
-		ID3DBlob* vertex_shader = nullptr;
-		ID3DBlob* pixcel_shader = nullptr;
-		ID3DBlob* geometry_shader = nullptr;
-		ID3DBlob* hull_shader = nullptr;
-		ID3DBlob* domain_shader = nullptr;
+		shader vertex_shader{};
+		shader pixcel_shader{};
+		shader geometry_shader{};
+		shader hull_shader{};
+		shader domain_shader{};
 	};
 
 	// グラフィクスパイプラインの作成
@@ -38,7 +44,7 @@ namespace dx12w
 
 	// コンピュートシェーダを使う際のパイポラインの作成
 	inline release_unique_ptr<ID3D12PipelineState> create_compute_pipeline(ID3D12Device* device,
-		ID3D12RootSignature* rootSignature, ID3DBlob* computeShader);
+		ID3D12RootSignature* rootSignature, shader computeShader);
 
 
 	//
@@ -57,25 +63,25 @@ namespace dx12w
 		//
 		// シェーダの設定
 		//
-		if (shaderDescs.vertex_shader) {
-			graphicsPipelineDesc.VS.pShaderBytecode = shaderDescs.vertex_shader->GetBufferPointer();
-			graphicsPipelineDesc.VS.BytecodeLength = shaderDescs.vertex_shader->GetBufferSize();
+		if (shaderDescs.vertex_shader.data) {
+			graphicsPipelineDesc.VS.pShaderBytecode = shaderDescs.vertex_shader.data;
+			graphicsPipelineDesc.VS.BytecodeLength = shaderDescs.vertex_shader.size;
 		}
-		if (shaderDescs.pixcel_shader) {
-			graphicsPipelineDesc.PS.pShaderBytecode = shaderDescs.pixcel_shader->GetBufferPointer();
-			graphicsPipelineDesc.PS.BytecodeLength = shaderDescs.pixcel_shader->GetBufferSize();
+		if (shaderDescs.pixcel_shader.data) {
+			graphicsPipelineDesc.PS.pShaderBytecode = shaderDescs.pixcel_shader.data;
+			graphicsPipelineDesc.PS.BytecodeLength = shaderDescs.pixcel_shader.size;
 		}
-		if (shaderDescs.geometry_shader) {
-			graphicsPipelineDesc.GS.pShaderBytecode = shaderDescs.geometry_shader->GetBufferPointer();
-			graphicsPipelineDesc.GS.BytecodeLength = shaderDescs.geometry_shader->GetBufferSize();
+		if (shaderDescs.geometry_shader.data) {
+			graphicsPipelineDesc.GS.pShaderBytecode = shaderDescs.geometry_shader.data;
+			graphicsPipelineDesc.GS.BytecodeLength = shaderDescs.geometry_shader.size;
 		}
-		if (shaderDescs.hull_shader) {
-			graphicsPipelineDesc.HS.pShaderBytecode = shaderDescs.hull_shader->GetBufferPointer();
-			graphicsPipelineDesc.HS.BytecodeLength = shaderDescs.hull_shader->GetBufferSize();
+		if (shaderDescs.hull_shader.data) {
+			graphicsPipelineDesc.HS.pShaderBytecode = shaderDescs.hull_shader.data;
+			graphicsPipelineDesc.HS.BytecodeLength = shaderDescs.hull_shader.size;
 		}
-		if (shaderDescs.domain_shader) {
-			graphicsPipelineDesc.DS.pShaderBytecode = shaderDescs.domain_shader->GetBufferPointer();
-			graphicsPipelineDesc.DS.BytecodeLength = shaderDescs.domain_shader->GetBufferSize();
+		if (shaderDescs.domain_shader.data) {
+			graphicsPipelineDesc.DS.pShaderBytecode = shaderDescs.domain_shader.data;
+			graphicsPipelineDesc.DS.BytecodeLength = shaderDescs.domain_shader.size;
 		}
 
 
@@ -195,11 +201,11 @@ namespace dx12w
 	}
 
 	inline release_unique_ptr<ID3D12PipelineState> create_compute_pipeline(ID3D12Device* device,
-		ID3D12RootSignature* rootSignature, ID3DBlob* computeShader)
+		ID3D12RootSignature* rootSignature, shader computeShader)
 	{
 		D3D12_COMPUTE_PIPELINE_STATE_DESC computePipelineDesc{};
-		computePipelineDesc.CS.pShaderBytecode = computeShader->GetBufferPointer();
-		computePipelineDesc.CS.BytecodeLength = computeShader->GetBufferSize();
+		computePipelineDesc.CS.pShaderBytecode = computeShader.data;
+		computePipelineDesc.CS.BytecodeLength = computeShader.size;
 		computePipelineDesc.pRootSignature = rootSignature;
 
 		ID3D12PipelineState* tmp = nullptr;
