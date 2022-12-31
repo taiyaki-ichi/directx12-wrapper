@@ -28,11 +28,11 @@ namespace dx12w
 	// 基本はshader_desc.vertex_shaderとshader_desc.pixel_shaderに値が設定されてればおけ
 	struct shader_desc
 	{
-		shader* vertex_shader = nullptr;
-		shader* pixcel_shader = nullptr;
-		shader* geometry_shader = nullptr;
-		shader* hull_shader = nullptr;
-		shader* domain_shader = nullptr;
+		shader vertex_shader{};
+		shader pixcel_shader{};
+		shader geometry_shader{};
+		shader hull_shader{};
+		shader domain_shader{};
 	};
 
 	// グラフィクスパイプラインの作成
@@ -63,25 +63,25 @@ namespace dx12w
 		//
 		// シェーダの設定
 		//
-		if (shaderDescs.vertex_shader) {
-			graphicsPipelineDesc.VS.pShaderBytecode = shaderDescs.vertex_shader->data;
-			graphicsPipelineDesc.VS.BytecodeLength = shaderDescs.vertex_shader->size;
+		if (shaderDescs.vertex_shader.data) {
+			graphicsPipelineDesc.VS.pShaderBytecode = shaderDescs.vertex_shader.data;
+			graphicsPipelineDesc.VS.BytecodeLength = shaderDescs.vertex_shader.size;
 		}
-		if (shaderDescs.pixcel_shader) {
-			graphicsPipelineDesc.PS.pShaderBytecode = shaderDescs.pixcel_shader->data;
-			graphicsPipelineDesc.PS.BytecodeLength = shaderDescs.pixcel_shader->size;
+		if (shaderDescs.pixcel_shader.data) {
+			graphicsPipelineDesc.PS.pShaderBytecode = shaderDescs.pixcel_shader.data;
+			graphicsPipelineDesc.PS.BytecodeLength = shaderDescs.pixcel_shader.size;
 		}
-		if (shaderDescs.geometry_shader) {
-			graphicsPipelineDesc.GS.pShaderBytecode = shaderDescs.geometry_shader->data;
-			graphicsPipelineDesc.GS.BytecodeLength = shaderDescs.geometry_shader->size;
+		if (shaderDescs.geometry_shader.data) {
+			graphicsPipelineDesc.GS.pShaderBytecode = shaderDescs.geometry_shader.data;
+			graphicsPipelineDesc.GS.BytecodeLength = shaderDescs.geometry_shader.size;
 		}
-		if (shaderDescs.hull_shader) {
-			graphicsPipelineDesc.HS.pShaderBytecode = shaderDescs.hull_shader->data;
-			graphicsPipelineDesc.HS.BytecodeLength = shaderDescs.hull_shader->size;
+		if (shaderDescs.hull_shader.data) {
+			graphicsPipelineDesc.HS.pShaderBytecode = shaderDescs.hull_shader.data;
+			graphicsPipelineDesc.HS.BytecodeLength = shaderDescs.hull_shader.size;
 		}
-		if (shaderDescs.domain_shader) {
-			graphicsPipelineDesc.DS.pShaderBytecode = shaderDescs.domain_shader->data;
-			graphicsPipelineDesc.DS.BytecodeLength = shaderDescs.domain_shader->size;
+		if (shaderDescs.domain_shader.data) {
+			graphicsPipelineDesc.DS.pShaderBytecode = shaderDescs.domain_shader.data;
+			graphicsPipelineDesc.DS.BytecodeLength = shaderDescs.domain_shader.size;
 		}
 
 
