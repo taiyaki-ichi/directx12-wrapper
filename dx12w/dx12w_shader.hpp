@@ -48,13 +48,19 @@ namespace dx12w
 	// バイナリの読み込み
 	inline std::vector<std::uint8_t> load_blob(std::istream& in)
 	{
-		std::vector<std::uint8_t> result{};
+		// ストリームの最後に移動
+		in.seekg(0, std::ios_base::end);
 
 		// 大きさの取得
 		auto const size = in.tellg();
 
-		// データの読み込み
-		in.seekg(0);
+		// 初期化
+		std::vector<std::uint8_t> result(size);
+
+		// 先頭に移動
+		in.seekg(0, std::ios_base::beg);
+
+		// 読み込み
 		in.read(reinterpret_cast<char*>(result[0]), size);
 
 		return result;
