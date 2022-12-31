@@ -61,7 +61,7 @@ namespace dx12w
 		in.seekg(0, std::ios_base::beg);
 
 		// “Ç‚İ‚İ
-		in.read(reinterpret_cast<char*>(result[0]), size);
+		in.read(reinterpret_cast<char*>(result.data()), size);
 
 		return result;
 	}
