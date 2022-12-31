@@ -7,6 +7,7 @@
 #include<array>
 #include<d3d12.h>
 #include<dxgi1_4.h>
+#include<concepts>
 
 #include<iostream>
 
@@ -84,5 +85,37 @@ namespace dx12w
 		else
 			return size + alignment - size % alignment;
 	}
+	
+	// 標準ライブラリとかのコンテナをblobとして使う場合
+	template<typename T>
+	struct blob_traits
+	{
+		static std::size_t size(T& t)
+		{
+			return t.size() * sizeof(typename T::value_type);
+		}
+
+		static void* data(T& t)
+		{
+			return t.data();
+		}
+	};
+	
+
+	// ID3DBlobをblobとして使う場合
+	template<>
+	struct blob_traits<release_unique_ptr<ID3DBlob>>
+	{
+		static std::size_t size(release_unique_ptr<ID3DBlob>& t)
+		{
+			return t->GetBufferSize();
+		}
+
+		static void* data(release_unique_ptr<ID3D10Blob>& t)
+		{
+			return t->GetBufferPointer();
+		}
+	};
+
 
 }
