@@ -44,7 +44,7 @@ namespace dx12w
 
 	// コンピュートシェーダを使う際のパイポラインの作成
 	inline release_unique_ptr<ID3D12PipelineState> create_compute_pipeline(ID3D12Device* device,
-		ID3D12RootSignature* rootSignature, ID3DBlob* computeShader);
+		ID3D12RootSignature* rootSignature, shader computeShader);
 
 
 	//
@@ -201,11 +201,11 @@ namespace dx12w
 	}
 
 	inline release_unique_ptr<ID3D12PipelineState> create_compute_pipeline(ID3D12Device* device,
-		ID3D12RootSignature* rootSignature, ID3DBlob* computeShader)
+		ID3D12RootSignature* rootSignature, shader computeShader)
 	{
 		D3D12_COMPUTE_PIPELINE_STATE_DESC computePipelineDesc{};
-		computePipelineDesc.CS.pShaderBytecode = computeShader->GetBufferPointer();
-		computePipelineDesc.CS.BytecodeLength = computeShader->GetBufferSize();
+		computePipelineDesc.CS.pShaderBytecode = computeShader.data;
+		computePipelineDesc.CS.BytecodeLength = computeShader.size;
 		computePipelineDesc.pRootSignature = rootSignature;
 
 		ID3D12PipelineState* tmp = nullptr;
