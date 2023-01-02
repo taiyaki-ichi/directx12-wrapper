@@ -59,6 +59,8 @@ namespace dx12w
 		ID3D12CommandQueue* get_queue();
 	};
 
+	template<std::size_t AllocatorNum>
+	command_manager<AllocatorNum> create_command_manager(ID3D12Device* device);
 
 	// 
 	// 
@@ -174,4 +176,11 @@ namespace dx12w
 		return queue.get();
 	}
 
+	template<std::size_t AllocatorNum>
+	command_manager<AllocatorNum> create_command_manager(ID3D12Device* device)
+	{
+		command_manager<AllocatorNum> result{};
+		result.initialize(device);
+		return result;
+	}
 }
