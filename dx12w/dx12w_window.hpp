@@ -3,6 +3,8 @@
 
 namespace dx12w
 {
+	// デフォルトのコールバック関数
+	inline LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 	// TODO: 32ビットの環境だとwindow_nameの型がcharでなければ行けないので対応する必要あり
 	inline HWND create_window(wchar_t const* window_name, LONG width, LONG height, WNDPROC wnd_proc = WndProc);
@@ -30,7 +32,7 @@ namespace dx12w
 		return DefWindowProc(hWnd, msg, wParam, lParam);
 	}
 
-	inline HWND create_window(wchar_t const* window_name, LONG width, LONG height, WNDPROC wnd_proc = WndProc)
+	inline HWND create_window(wchar_t const* window_name, LONG width, LONG height, WNDPROC wnd_proc)
 	{
 		HINSTANCE hInstance = GetModuleHandle(nullptr);
 
