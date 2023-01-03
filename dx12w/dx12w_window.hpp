@@ -30,14 +30,14 @@ namespace dx12w
 		return DefWindowProc(hWnd, msg, wParam, lParam);
 	}
 
-	inline HWND create_window(wchar_t const* window_name, LONG width, LONG height)
+	inline HWND create_window(wchar_t const* window_name, LONG width, LONG height, WNDPROC wnd_proc = WndProc)
 	{
 		HINSTANCE hInstance = GetModuleHandle(nullptr);
 
 		// ウィンドウクラス設定
 		WNDCLASSEX wcex{};
 		wcex.cbSize = sizeof(WNDCLASSEX);
-		wcex.lpfnWndProc = WndProc;
+		wcex.lpfnWndProc = wnd_proc;
 		wcex.lpszClassName = window_name;
 		wcex.hInstance = hInstance;
 
