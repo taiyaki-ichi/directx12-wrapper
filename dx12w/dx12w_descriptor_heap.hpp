@@ -26,6 +26,7 @@ namespace dx12w
 		ID3D12DescriptorHeap* get();
 	};
 
+	inline descriptor_heap create_descriptor_heap(ID3D12Device* device, D3D12_DESCRIPTOR_HEAP_TYPE type, UINT size);
 	
 
 	//
@@ -74,5 +75,12 @@ namespace dx12w
 	inline ID3D12DescriptorHeap* descriptor_heap::get()
 	{
 		return ptr.get();
+	}
+
+	inline descriptor_heap create_descriptor_heap(ID3D12Device* device, D3D12_DESCRIPTOR_HEAP_TYPE type, UINT size)
+	{
+		descriptor_heap result{};
+		result.initialize(device, type, size);
+		return result;
 	}
 }
