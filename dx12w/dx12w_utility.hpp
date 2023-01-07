@@ -5,6 +5,7 @@
 #include<utility>
 #include<algorithm>
 #include<array>
+#include<cassert>
 #include<d3d12.h>
 #include<dxgi1_4.h>
 
@@ -40,6 +41,14 @@ namespace dx12w
 	using release_unique_ptr = std::unique_ptr<T, release_deleter<T>>;
 
 
+	template<typename T>
+	inline constexpr T alignment(T size, T alignment) {
+		if (size % alignment == 0)
+			return size;
+		else
+			return size + alignment - size % alignment;
+	}
+
 
 	// ñﬂÇËílÇÕsrcÅAdstÇÃèá
 	inline std::pair<D3D12_TEXTURE_COPY_LOCATION, D3D12_TEXTURE_COPY_LOCATION> get_texture_copy_location(
@@ -49,9 +58,6 @@ namespace dx12w
 		D3D12_TEXTURE_COPY_LOCATION dstLocation{};
 
 		auto const dstDesc = dstResource->GetDesc();
-		auto const width = dstDesc.Width;
-		auto const height = dstDesc.Height;
-		auto const uploadResourceRowPitch = srcResource->GetDesc().Width / height;
 
 		srcLocation.pResource = srcResource;
 		srcLocation.Type = D3D12_TEXTURE_COPY_TYPE_PLACED_FOOTPRINT;
@@ -63,26 +69,13 @@ namespace dx12w
 			srcLocation.PlacedFootprint = footprint;
 		}
 		srcLocation.PlacedFootprint.Offset = 0;
-		srcLocation.PlacedFootprint.Footprint.Width = static_cast<UINT>(width);
-		srcLocation.PlacedFootprint.Footprint.Height = height;
-		srcLocation.PlacedFootprint.Footprint.Depth = 1;
-		srcLocation.PlacedFootprint.Footprint.RowPitch = static_cast<UINT>(uploadResourceRowPitch);
-		srcLocation.PlacedFootprint.Footprint.Format = dstDesc.Format;
+
 
 		dstLocation.pResource = dstResource;
 		dstLocation.Type = D3D12_TEXTURE_COPY_TYPE_SUBRESOURCE_INDEX;
 		dstLocation.SubresourceIndex = 0;
 
 		return { std::move(srcLocation),std::move(dstLocation) };
-	}
-
-
-	template<typename T>
-	inline constexpr T alignment(T size, T alignment) {
-		if (size % alignment == 0)
-			return size;
-		else
-			return size + alignment - size % alignment;
 	}
 
 }
