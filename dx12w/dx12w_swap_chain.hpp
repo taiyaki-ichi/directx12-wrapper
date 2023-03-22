@@ -2,6 +2,7 @@
 #include<d3d12.h>
 #include<dxgi1_4.h>
 #include"dx12w_utility.hpp"
+#include"dx12w_resource.hpp"
 
 #pragma comment(lib,"d3d12.lib")
 #pragma comment(lib,"dxgi.lib")
@@ -62,5 +63,23 @@ namespace dx12w
 
 
 		return swapChain;
+	}
+
+	// スワップチェーンからフレームバッファの取得
+	template<std::size_t FRAME_BUFFER_NUM, typename Container = std::array<dx12w::resource_and_state, FRAME_BUFFER_NUM>>
+	inline Container get_frame_buffer_resource(IDXGISwapChain3* swapChain)
+	{
+		Container result{};
+		auto containerIter = std::begin(result);
+
+		for (std::size_t i = 0; i < FRAME_BUFFER_NUM; i++)
+		{
+			ID3D12Resource* tmp = nullptr;
+			swapChain->GetBuffer(static_cast<UINT>(i), IID_PPV_ARGS(&tmp));
+			*containerIter = std::make_pair(dx12w::release_unique_ptr<ID3D12Resource>{tmp}, D3D12_RESOURCE_STATE_COMMON);
+			containerIter++;
+		}
+
+		return result;
 	}
 }
