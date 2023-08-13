@@ -145,7 +145,7 @@ namespace dx12w
 		}
 
 		D3D12_BLEND_DESC blendDesc{};
-		blendDesc.AlphaToCoverageEnable = TRUE;
+		blendDesc.AlphaToCoverageEnable = FALSE;
 		blendDesc.IndependentBlendEnable = FALSE;
 		blendDesc.RenderTarget[0] = renderTagetBlendDesc;
 
