@@ -127,14 +127,15 @@ namespace dx12w
 		if (alphaBlend)
 		{
 			renderTagetBlendDesc.BlendEnable = TRUE;
-			renderTagetBlendDesc.BlendOp = D3D12_BLEND_OP_ADD;
-			renderTagetBlendDesc.BlendOpAlpha = D3D12_BLEND_OP_ADD;
-			renderTagetBlendDesc.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;;
-			renderTagetBlendDesc.DestBlendAlpha = D3D12_BLEND_ONE;
 			renderTagetBlendDesc.SrcBlend = D3D12_BLEND_SRC_ALPHA;
-			renderTagetBlendDesc.SrcBlendAlpha = D3D12_BLEND_ONE;
-			renderTagetBlendDesc.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
+			renderTagetBlendDesc.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;
+			renderTagetBlendDesc.BlendOp = D3D12_BLEND_OP_ADD;
+			renderTagetBlendDesc.SrcBlendAlpha = D3D12_BLEND_SRC_ALPHA;
+			renderTagetBlendDesc.DestBlendAlpha = D3D12_BLEND_INV_SRC_ALPHA;
+			renderTagetBlendDesc.BlendOpAlpha = D3D12_BLEND_OP_ADD;
 			renderTagetBlendDesc.LogicOp = D3D12_LOGIC_OP_NOOP;
+			renderTagetBlendDesc.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
+
 			renderTagetBlendDesc.LogicOpEnable = FALSE;
 		}
 		else {
