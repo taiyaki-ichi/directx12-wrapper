@@ -3,6 +3,7 @@
 #include"dx12w_utility.hpp"
 #include<vector>
 #include<array>
+#include<numeric>
 
 #pragma comment(lib,"d3d12.lib")
 
@@ -146,5 +147,19 @@ namespace dx12w
 		rootSigBlob->Release();
 
 		return result;
+	}
+
+	// ヘルパ
+	// デスクリプタの数を数える
+	template<typename T>
+	decltype(auto) calc_descriptor_num(const T& t)
+	{
+		if constexpr (std::is_same_v<std::remove_cv_t<T>, descriptor_range_type>)
+			return t.num;
+		else {
+			UINT sum = 0;
+			std::for_each(std::begin(t), std::end(t), [&sum](const auto& v) {sum += calc_descriptor_num(v); });
+			return sum;
+		}
 	}
 }
